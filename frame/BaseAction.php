@@ -45,10 +45,19 @@ class BaseAction implements ActionInterface {
     /**
      * 向客户端以JSON格式发送数据
      * @param Response $response
-     * @param any $data
+     * @param mixed $data
      */
     public static function renderJson(Response $response, $data) {
         $response->header('Content-type', 'application/json');
+        self::logOutput($data);
         $response->end(json_encode($data));
+    }
+    
+    /**
+     * 记录输出日志
+     * @param mixed $output
+     */
+    public static function logOutput($output) {
+        \Frame\Log\LogPlugin::addData('output', $output);
     }
 }

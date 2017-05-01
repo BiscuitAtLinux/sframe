@@ -5,7 +5,6 @@
  */
 
 use Frame\SimpleNamespaceRouter;
-use Plugin\SamplePlugin;
 
 require_once __DIR__.'/vendor/autoload.php';
 
@@ -27,7 +26,7 @@ $http->set(array(
 //每个Worker进程启动时执行，执行进程初始化
 $http->on('WorkerStart', function ($serv, $worker_id){
     global $manager;
-    $manager = new Frame\Manager(new SimpleNamespaceRouter(),array(/*new SamplePlugin()*/));
+    $manager = new Frame\Manager(new SimpleNamespaceRouter(),array(new \Frame\Log\LogPlugin()));
     echo 'Worker started: '.getmypid().PHP_EOL;
 });
 
