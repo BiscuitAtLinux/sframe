@@ -9,5 +9,6 @@ sframe是一个基于[Swoole](http://www.swoole.com/)超级精简且高性能的
 * [Composer](https://getcomposer.org/)
 * [Swoole](https://wiki.swoole.com/wiki/page/6.html)
 # 运行
+* `composer install`
 * `php app_server.php`
 * 访问 http://localhost:9501

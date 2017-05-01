@@ -20,6 +20,8 @@ echo 'HTTP Server listen at '.$addr.':'.$port.PHP_EOL;
 $http->set(array(
     'worker_num' => 4,      //Worker子进程数量
     'max_request' => 5000,  //Worker重启前最多处理的请求数，防止内存泄漏
+    'package_max_length' => 20*1024*1024,   //影响最大文件上传大小
+    'upload_tmp_dir' => __DIR__.'/tmp/',    //文件上传临时目录
 ));
 
 //每个Worker进程启动时执行，执行进程初始化
