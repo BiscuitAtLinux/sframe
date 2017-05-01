@@ -25,10 +25,14 @@ class BaseAction implements ActionInterface {
      */
     public static function getParam(Request $request, $key=null) {
         //merge POST和GET的参数，GET参数优先级高
-        if (isset($request->post)) {
+        if (isset($request->post) && isset($request->get)) {
             $params = array_merge($request->post,$request->get);
-        } else {
+        } else if (isset($request->get)) {
             $params = $request->get;
+        } else if (isset($request->post)) {
+            $params = $request->post;
+        } else {
+            $params = array();
         }
         
         if ($key) {
