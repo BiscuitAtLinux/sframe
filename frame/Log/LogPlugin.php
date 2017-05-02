@@ -47,7 +47,7 @@ class LogPlugin extends \Frame\BasePlugin {
                 $request->server['remote_addr'],isset($request->header['x-forwarded-for'])?$request->header['x-forwarded-for']:'-', 
                 $request->server['request_uri'],isset($request->server['query_string'])?'?'.$request->server['query_string']:'', 
                 $request->header['user-agent'], $this->startTime,$endTime, $endTime-$this->startTime,
-                json_encode(self::getParam($request)),json_encode($request->cookie),json_encode(self::$extraData)));
+                json_encode(self::getParam($request)),isset($request->cookie)?json_encode($request->cookie):'',json_encode(self::$extraData)));
         $this->startTime = null;
         self::$extraData = null;
     }
