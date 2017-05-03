@@ -43,8 +43,8 @@ class LogPlugin extends \Frame\BasePlugin {
      */
     public function afterAction(Request $request, Response $response){
         $endTime = microtime(true);
-        $this->logger->notice(sprintf('remote=%s(%s) request_uri=%s%s ua="%s" start=%0.3f end=%0.3f const=%0.3f param=%s cookie=%s extra=%s',
-                $request->server['remote_addr'],isset($request->header['x-forwarded-for'])?$request->header['x-forwarded-for']:'-', 
+        $this->logger->notice(sprintf('%s remote=%s(%s) request_uri=%s%s ua="%s" start=%0.3f end=%0.3f const=%0.3f param=%s cookie=%s extra=%s',
+                $request->server['request_method'],$request->server['remote_addr'],isset($request->header['x-forwarded-for'])?$request->header['x-forwarded-for']:'-', 
                 $request->server['request_uri'],isset($request->server['query_string'])?'?'.$request->server['query_string']:'', 
                 $request->header['user-agent'], $this->startTime,$endTime, $endTime-$this->startTime,
                 json_encode(self::getParam($request)),isset($request->cookie)?json_encode($request->cookie):'',json_encode(self::$extraData)));
